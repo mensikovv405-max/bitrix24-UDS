@@ -1,0 +1,537 @@
+.grid-table-sprint {
+    display: grid;
+    grid-template-rows: auto 1fr auto; /* Заголовок, основной контент, подвал */
+    height: 100%; /* Занимает весь экран */
+    max-height: 900px;
+    overflow: auto; /* Отключаем прокрутку родительского контейнера */
+}
+
+.sprint-grid-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.grid-header {
+    position: sticky;
+    top: 0;
+    z-index: 12;
+    background: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+}
+
+.employee-col {
+    padding: 16px;
+    padding-top: 28px;
+    font-weight: 600;
+    text-align: center;
+    border-right: 1px solid #e0e0e0;
+    position: sticky;
+    left: 0;
+    background: #f8f9fa;
+    z-index: 13;
+    min-width: 240px;
+}
+
+.sprint-col-group {
+    border-right: 1px solid #e0e0e0;
+    min-width: 240px;
+    width: 100%;
+}
+
+.sprint-title {
+    padding: 2px;
+    text-align: center;
+    font-weight: 500;
+    background: #404040;
+    color: white;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.sprint-title.current-sprint {
+    background-color: #2d7ff9;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(45, 127, 249, 0.3);
+}
+
+.metric {
+    flex: 1;
+    text-align: center;
+    font-weight: 500;
+
+}
+
+.grid-body .grid-row .metrics-row {
+    min-width: 240px;
+    padding: 0;
+}
+
+.grid-body .grid-row .metrics-row {
+    min-width: 240px;
+    padding: 0;
+}
+
+.grid-body .grid-row .employee-cell {
+    min-width: 240px;
+    padding: 16px;
+    position: sticky;
+    left: 0;
+    background: inherit;
+    z-index: 2;
+}
+
+.total-row .employee-cell {
+    min-width: 240px;
+    padding: 16px;
+}
+
+.grid-row {
+    background: #fff;
+    position: relative;
+    display: flex;
+}
+
+.grid-row:hover {
+    background: #f8f9fa;
+}
+
+.employee-cell {
+    position: sticky;
+    left: 0;
+    background: inherit;
+    z-index: 2;
+    border-right: 1px solid #e0e0e0;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.metrics-row {
+    display: flex;
+    flex: 1;
+    /*width: 240px;*/
+    /*min-width: 240px;*/
+    border-right: 1px solid #e0e0e0;
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.metric-cell {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.metric-cell-red {
+    font-weight: 500;
+    background-color: rgba(255, 0, 0, 0.37);
+
+}
+
+.metric-cell-yellow {
+    font-weight: 500;
+    background-color: rgba(255, 241, 0, 0.45);
+
+}
+
+.metric-cell-green {
+    font-weight: 500;
+    background-color: rgba(85, 255, 0, 0.47);
+}
+
+.metric-cell-black {
+    color: #151415;
+}
+
+.total-row {
+    background: #f3f4f6;
+    font-weight: 600;
+    position: sticky;
+    bottom: 0;
+    z-index: 11;
+}
+
+.total-row .employee-cell {
+    background: #f3f4f6;
+    z-index: 3;
+}
+
+.fact-cell {
+    flex-direction: column;
+    gap: 4px;
+}
+
+.clickable-task-count {
+    cursor: pointer;
+    color: #2067B0;
+    text-decoration: underline;
+}
+
+.clickable-task-count:hover {
+    color: #164C8A;
+    background-color: #e9f5ff;
+}
+
+/* Грид с детализацией по задачам */
+.task-details-container {
+    width: 100%;
+    margin: 15px auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.task-list-title {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 0;
+    border-bottom: 2px solid #f0f4f9;
+}
+
+.task-list-header {
+    display: grid;
+    grid-template-columns:
+        minmax(30%, 1fr)
+        repeat(5, minmax(10%, 1fr))
+        repeat(2, minmax(5%, 1fr));
+    gap: 10px;
+    overflow-x: auto;
+    padding: 12px 16px;
+    align-items: center;
+    background-color: #f8fafc;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: #475569;
+    margin-bottom: 8px;
+}
+
+.task-item {
+    display: grid;
+    grid-template-columns:
+        minmax(30%, 1fr)
+        repeat(5, minmax(10%, 1fr))
+        repeat(2, minmax(2%, 1fr));
+    gap: 10px;
+    overflow-x: auto;
+    padding: 12px 16px;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #334155;
+    border-radius: 4px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s ease;
+    justify-content: center;
+}
+
+.task-item:hover {
+    background-color: #f9f9f9;
+}
+
+.task-col-id,
+.task-col-plan,
+.task-col-fact {
+    text-align: center;
+    font-weight: 500;
+}
+
+.task-col.task-col-title {
+    text-align: left;
+}
+
+.task-col {
+    padding: 0 7px;
+    width: auto;
+    text-align: center;
+    white-space: normal;
+    overflow: auto;
+}
+
+.task-status-new {
+    color: #7CD86A; /* Красный */
+}
+.task-status-waiting {
+    color: #7CD86A; /* Оранжевый */
+}
+.task-status-in-progress {
+    color: #7CD86A; /* Синий */
+}
+.task-status-waiting-control {
+    color: #FFD59B; /* Фиолетовый */
+}
+.task-status-completed {
+    color: #95a5a6; /* Серый */
+}
+.task-status-deferred {
+    color: #7f8c8d; /* Темно-серый */
+}
+
+.task-item a {
+    color: #2067B0;
+    text-decoration: none;
+    display: inline-block;
+    max-width: 100%;
+    transition: color 0.2s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.task-item a:hover {
+    color: #164b8a;
+    text-decoration: underline;
+}
+
+.task-list-close {
+    grid-column: 1 / -1;
+    text-align: right;
+    margin-top: 10px;
+}
+
+.task-list-close button {
+    padding: 6px 15px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.task-list-close button:hover {
+    background-color: #e0e0e0;
+}
+
+.task-list-footer {
+    margin: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px;
+}
+
+.task-list-footer .btn-block {
+    margin-right: 40px;
+}
+
+.bx-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.bx-btn-primary {
+    background: #2fc6f6;
+    color: white;
+}
+
+.bx-btn-success {
+    background: #7cd86a;
+    color: white;
+}
+
+/* Стиль для контейнера аккордеона */
+.accordion {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 600px;
+}
+
+/* Скрытие чекбоксов */
+.accordion-input {
+    display: none;
+}
+
+/* Стиль заголовка */
+.accordion-header {
+    display: block;
+    color: #302a2a;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.accordion-input:not(:checked) + .accordion-header:hover {
+    background-color: #eaeaea;
+}
+
+/* Стиль контента */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.5s ease-in-out;
+    padding: 0 15px;
+    background-color: #fff;
+}
+
+/* Показ контента при активации чекбокса */
+.accordion-input:checked + .accordion-header + .accordion-content {
+    max-height: 500px; /* Установите значение, достаточное для отображения контента */
+    padding: 15px;
+}
+
+.accordion-input + .accordion-header .fa-chevron-down {
+    transition: transform 0.3s ease-in-out;
+    transform: rotate(0deg);
+}
+
+.accordion-input:checked + .accordion-header .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.accordion-input:checked + .accordion-header {
+    background-color: #fff;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination-button {
+    padding: 5px 10px;
+    background-color: #2fc6f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+    background-color: #28b3df;
+}
+
+.pagination-info {
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* Для экранов меньше 1200px */
+@media (max-width: 1280px) {
+    .task-details-container,
+    .task-item {
+        grid-template-columns:
+            minmax(300px, 1fr)
+            repeat(5, minmax(80px, 1fr))
+            repeat(2, minmax(20px, 1fr));
+    }
+
+    .task-col-title {
+        width: auto;
+        text-align: left;
+        padding: 0 10px;
+        text-align: center;
+        white-space: normal;
+        overflow: auto;
+    }
+
+    .task-col-author,
+    .task-col-bn,
+    .task-col-responsible {
+        width: auto;
+        text-align: center;
+        white-space: normal;
+        overflow: auto;
+    }
+}
+
+/* Для экранов меньше 768px */
+@media (max-width: 768px) {
+    .task-details-container,
+    .task-item {
+        grid-template-columns:
+            repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
+/* Описание отчета */
+.report-description {
+    margin: 20px 0;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.report-description h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+}
+
+.report-description ul {
+    margin: 10px 0 15px;
+    padding-left: 20px;
+}
+
+.report-description li {
+    margin-bottom: 8px;
+    list-style: square;
+}
+
+.report-description strong {
+    color: #34495e;
+}
+
+.color-legend {
+    margin: 15px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 30px;
+    max-width: 700px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.color-box {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+}
+
+.green { background-color: rgba(85, 255, 0, 0.47); }
+.yellow { background-color: rgba(255, 241, 0, 0.45); }
+.red { background-color: rgba(255, 0, 0, 0.37); }
+.black { background-color: #151415; }
+
+.filter-description {
+    margin-top: 20px;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 20px;
+}
+
+.filter-description li {
+    margin-bottom: 12px;
+}
+
+.filter-description small {
+    display: block;
+    margin-top: 4px;
+    color: #6c757d;
+    font-size: 12px;
+}
